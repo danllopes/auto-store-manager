@@ -22,4 +22,14 @@ public class DataBaseConnection {
         }
         return connection;
     }
+
+    public static void closeConnection() {
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException ex) {
+                throw new DataBaseException("Error occurred while closing the database connection: " + ex.getMessage());
+            }
+        }
+    }
 }
