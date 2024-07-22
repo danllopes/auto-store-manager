@@ -1,9 +1,6 @@
 package db;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class DataBaseConnection {
 
@@ -39,7 +36,17 @@ public class DataBaseConnection {
             try {
                 statement.close();
             } catch (SQLException ex) {
-                throw new DataBaseException("Error closing statement: " + ex.getMessage());
+                throw new DataBaseException("Error closing Statement: " + ex.getMessage());
+            }
+        }
+    }
+
+    public static void closeResultSet(ResultSet resultSet) {
+        if (resultSet != null) {
+            try {
+                resultSet.close();
+            } catch (SQLException ex) {
+                throw new DataBaseException("Error closing ResultSet: " + ex.getMessage());
             }
         }
     }
