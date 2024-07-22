@@ -3,6 +3,7 @@ package db;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class DataBaseConnection {
 
@@ -29,6 +30,16 @@ public class DataBaseConnection {
                 connection.close();
             } catch (SQLException ex) {
                 throw new DataBaseException("Error occurred while closing the database connection: " + ex.getMessage());
+            }
+        }
+    }
+
+    public static void closeStatement(Statement statement) {
+        if (statement != null) {
+            try {
+                statement.close();
+            } catch (SQLException ex) {
+                throw new DataBaseException("Error closing statement: " + ex.getMessage());
             }
         }
     }
